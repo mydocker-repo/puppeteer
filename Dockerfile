@@ -15,15 +15,6 @@ ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
     PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 COPY --from=builder /app/node_modules /root/node_modules
 
-# SSH基础设置
-RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh && \
-    touch /root/.ssh/known_hosts
-COPY id_cron* /root/.ssh/
-RUN chmod 600 /root/.ssh/id_cron* && \
-    echo "Host *" >> /root/.ssh/config && \
-    echo "  StrictHostKeyChecking no" >> /root/.ssh/config && \
-    echo "  IdentityFile /root/.ssh/id_cron" >> /root/.ssh/config
-    
 RUN echo "alias ll='ls -la'" > /root/.bashrc && \
     echo "PS1='\[\e[1;32m\][\W]\$\[\e[0m\] '" >> /root/.bashrc
 WORKDIR /root
