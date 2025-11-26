@@ -1,6 +1,8 @@
 // index.js
 import puppeteer from 'puppeteer';
-
+Date.prototype.string=function(){
+return this.toLocaleString().replaceAll('/','-').replace(' ','T')
+}
 (async () => {
   console.log('正在启动 Chromium...');
 
@@ -23,14 +25,14 @@ import puppeteer from 'puppeteer';
   try {
     console.log('浏览器启动成功，准备打开页面...');
     const page = await browser.newPage();
-    
+    await page.emulateTimezone('Asia/Shanghai');
     await page.goto('https://time.yingming006.cn/', { 
       waitUntil: 'domcontentloaded', 
       timeout: 30000 
     });
     
     console.log('页面加载成功，标题：', await page.title());
-    const dt=new Date().toISOString();
+    const dt=new Date().string();
     await page.screenshot({ path: `${dt}-success.png` });
     console.log(`截图已保存：${dt}-success.png`);
     
