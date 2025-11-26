@@ -31,8 +31,8 @@ import puppeteer from 'puppeteer';
     
     console.log('页面加载成功，标题：', await page.title());
     const dt=new Date().toISOString();
-    await page.screenshot({ path: `success-${dt}.png` });
-    console.log(`截图已保存：success-${dt}.png`);
+    await page.screenshot({ path: `${dt}-success.png` });
+    console.log(`截图已保存：${dt}-success.png`);
     
   } catch (err) {
     console.error('出错了：', err.message);
