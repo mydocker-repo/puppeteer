@@ -1,5 +1,5 @@
 # 示例：每5分钟运行一次 node 脚本
-#*/5 * * * * /usr/bin/node /app/tasks/send-report.js >> /var/log/cron.log 2>&1
+*/5 * * * * /usr/bin/node /app/tasks/send-report.js >> /var/log/cron.log 2>&1
 
 # 每天凌晨2点运行 python 脚本
-#0 2 * * * /usr/bin/python3 /app/tasks/backup.py >> /var/log/cron.log 2>&1
+0 2 * * * /usr/bin/python3 /app/tasks/backup.py >> /var/log/cron.log 2>&1
